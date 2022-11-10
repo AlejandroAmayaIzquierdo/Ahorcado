@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -25,7 +26,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.BorderPane;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class PuntuacionesController implements Initializable {
 	
@@ -45,7 +48,7 @@ public class PuntuacionesController implements Initializable {
     @FXML
     private TableColumn<Puntuacion, String> nombreCollumn;
     @FXML
-    private TableColumn<Puntuacion, LocalDate> fechaCollumn;
+    private TableColumn<Puntuacion, LocalDateTime> fechaCollumn;
     @FXML
     private TableColumn<Puntuacion, Number> puntuacionCollumn;
 
@@ -81,6 +84,8 @@ public class PuntuacionesController implements Initializable {
 		puntuacionCollumn.setCellValueFactory(v -> v.getValue().puntuacionProperty());
 		
 		// cell factory
+		
+		fechaCollumn.setCellFactory(TextFieldTableCell.forTableColumn(new LocalDateTimeStringConverter()));
 		
 	}
 	public void LoadPuntuaciones() {

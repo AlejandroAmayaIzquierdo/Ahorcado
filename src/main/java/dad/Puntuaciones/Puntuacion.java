@@ -1,9 +1,8 @@
 package dad.Puntuaciones;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.util.Locale;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -15,13 +14,13 @@ import javafx.beans.property.StringProperty;
 public class Puntuacion {
 	
 	private StringProperty nombre = new SimpleStringProperty();
-	private ObjectProperty<LocalDate> fecha = new SimpleObjectProperty<>();
+	private ObjectProperty<LocalDateTime> fecha = new SimpleObjectProperty<>();
 	private IntegerProperty puntuacion = new SimpleIntegerProperty();
 	
 	public Puntuacion(String[] puntuacion) {
 		setNombre(puntuacion[0]);
 		DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		setFecha(LocalDate.parse(puntuacion[1],df));
+		setFecha(LocalDateTime.parse(puntuacion[1],df));
 		setPuntuacion(Integer.parseInt(puntuacion[2]));
 	}
 	
@@ -38,17 +37,6 @@ public class Puntuacion {
 		this.nombreProperty().set(nombre);
 	}
 	
-	public final ObjectProperty<LocalDate> fechaProperty() {
-		return this.fecha;
-	}
-	
-	public final LocalDate getFecha() {
-		return this.fechaProperty().get();
-	}
-	
-	public final void setFecha(final LocalDate fecha) {
-		this.fechaProperty().set(fecha);
-	}
 	
 	public final IntegerProperty puntuacionProperty() {
 		return this.puntuacion;
@@ -61,6 +49,24 @@ public class Puntuacion {
 	public final void setPuntuacion(final int puntuacion) {
 		this.puntuacionProperty().set(puntuacion);
 	}
+
+
+	public final ObjectProperty<LocalDateTime> fechaProperty() {
+		return this.fecha;
+	}
+	
+
+
+	public final LocalDateTime getFecha() {
+		return this.fechaProperty().get();
+	}
+	
+
+
+	public final void setFecha(final LocalDateTime fecha) {
+		this.fechaProperty().set(fecha);
+	}
+	
 	
 	
 
